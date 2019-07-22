@@ -1,4 +1,5 @@
-﻿  avoid_auto_increment_checker.cc
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(377,5): warning MSB8004: Output 目录未以斜杠结尾。  此生成实例将添加斜杠，因为必须有这个斜杠才能正确计算 Output 目录。
+  avoid_auto_increment_checker.cc
   avoid_select_all_checker.cc
   checker.cc
   explain_query_plan_checker.cc
@@ -40,4 +41,4 @@
   util.c
   md5.c
   正在生成代码...
-  SQLint.vcxproj -> E:\SQLint\Debug\SQLint.lib
+  SQLint.vcxproj -> E:\SQLint\out\lib\SQLint.lib
