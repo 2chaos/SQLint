@@ -160,14 +160,16 @@ namespace sqlitelint {
             if (!IsSqlSupportCheck(sql_info->sql_)) {
                 sDebug("Lint::Check Sql not support");
                 env_.AddToSqlHistory(*sql_info);
-				sql_info->checked_promise->set_value(issues_id);
+				if (sql_info->is_synchronous)
+					sql_info->checked_promise->set_value(issues_id);
                 continue;
             }
 
             if (!PreProcessSqlInfo(sql_info.get())) {
                 sWarn("Lint::Check PreProcessSqlInfo failed");
                 env_.AddToSqlHistory(*sql_info);
-				sql_info->checked_promise->set_value(issues_id);
+				if (sql_info->is_synchronous)
+					sql_info->checked_promise->set_value(issues_id);
                 continue;
             }
 

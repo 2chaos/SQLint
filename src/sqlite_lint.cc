@@ -28,6 +28,8 @@ namespace sqlitelint {
 
     SqlExecutionDelegate kSqlExecutionDelegate;
 	std::mutex log_mutex;
+	std::thread::id MainThreadID;
+
 
 	int SqlExecutionDelegateFunc(const char * dbPath, const char * sql, SqlExecutionCallback callback, void * para, char ** errmsg)
 	{
@@ -41,6 +43,11 @@ namespace sqlitelint {
 	void SetSqlExecutionDelegate(SqlExecutionDelegate func){
         kSqlExecutionDelegate = func;
     }
+
+	void SetMainThreadID(std::thread::id MainThreadID_)
+	{
+		MainThreadID = MainThreadID_;
+	}
 
 	void issue_callback(const char* db_path, std::vector<sqlitelint::Issue> published_issues) {
 		std::unique_lock<std::mutex> lock(log_mutex);

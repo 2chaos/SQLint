@@ -14,31 +14,14 @@
   replace_into_checker.cc
   without_rowid_better_checker.cc
   lint_util.cc
-  logger.cc
   lint.cc
   lint_env.cc
   lint_info.cc
   lint_logic.cc
+  lint_manager.cc
   正在生成代码...
   正在编译...
-  lint_manager.cc
   sql_Info_processor.cc
-  white_list_mgr.cc
   sqlite_lint.cc
-  正在生成代码...
-  build.c
-  delete.c
-  expr.c
-  insert.c
-  os.c
-  os_win.c
-  parse.c
-  printf.c
-  random.c
-  select.c
-  tokenize.c
-  update.c
-  util.c
-  md5.c
   正在生成代码...
   SQLint.vcxproj -> E:\SQLint\out\lib\SQLint.lib

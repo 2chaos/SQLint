@@ -16,6 +16,7 @@
 #pragma warning(disable:4996)
 #include <windows.h>
 #include "comm/lint_util.h"
+#include "sqlite_lint.h"
 #include <unistd.h>
 #include "md5.h"
 #include <time.h>
@@ -113,30 +114,31 @@ namespace sqlitelint {
 		return pid == gettid();*/
 
 		//ZQC windows下判断当前线程是否为主线程
-		static intmax_t pid = _getpid();
-		long long main_tid = 0;
-		THREADENTRY32 te;
-		te.dwSize = sizeof(THREADENTRY32);
-		HANDLE hSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPTHREAD, 0);
-		if (Thread32First(hSnapshot, &te)) {
-			do {
-				if (pid == te.th32OwnerProcessID) {
-					main_tid = te.th32ThreadID;
-					break;
-				}
-			} while (Thread32Next(hSnapshot, &te));
-		}
-		CloseHandle(hSnapshot);
+		//static intmax_t pid = _getpid();
+		//long long main_tid = 0;
+		//THREADENTRY32 te;
+		//te.dwSize = sizeof(THREADENTRY32);
+		//HANDLE hSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPTHREAD, 0);
+		//if (Thread32First(hSnapshot, &te)) {
+		//	do {
+		//		if (pid == te.th32OwnerProcessID) {
+		//			main_tid = te.th32ThreadID;
+		//			break;
+		//		}
+		//	} while (Thread32Next(hSnapshot, &te));
+		//}
+		//CloseHandle(hSnapshot);
+		//std::stringstream idstream;
+		//std::string idstring;
+		//std::string midstring;
+		//idstream << std::this_thread::get_id();		//当前线程id
+		//idstream >> idstring;
+		//idstream.clear();
+		//idstream << main_tid;						//主线程id
+		//idstream >> midstring;
+		//return (midstring == idstring);
 
-		std::stringstream idstream;
-		std::string idstring;
-		std::string midstring;
-		idstream << std::this_thread::get_id();		//当前线程id
-		idstream >> idstring;
-		idstream.clear();
-		idstream << main_tid;						//主线程id
-		idstream >> midstring;
-		return (midstring == idstring);
+		return (MainThreadID == std::this_thread::get_id());
 	}
 
 	std::string GetThreadId() {

@@ -28,9 +28,11 @@
 #include <set>
 #include <vector>
 #include <fstream>
+#include <thread>
 #include "slint.h"
 
 namespace sqlitelint {
+	extern std::thread::id MainThreadID;
 
     typedef int(*SqlExecutionCallback)(void*, int, char**, char**);
 
@@ -40,6 +42,7 @@ namespace sqlitelint {
 	int SqlExecutionDelegateFunc(const char* dbPath, const char* sql, SqlExecutionCallback callback, void* para, char** errmsg);
 
     void SetSqlExecutionDelegate(SqlExecutionDelegate delegate);
+	void SetMainThreadID(std::thread::id MainThreadID_);
 
     // It's a listener of the SDK level to be notified the issue published by some checkers
     typedef void(*OnPublishIssueCallback) (const char* db_path, std::vector<Issue> published_issues);
